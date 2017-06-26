@@ -1,3 +1,5 @@
 .env
 node_modules
 *.log
+assets/files/*
+uploads/

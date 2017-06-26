@@ -16,7 +16,7 @@ All of the changes you'll need are expressed below, but **you should only have t
 * Add a `multer` upload middleware that handles a single file (with a name of `file`)
 * In the route handler, call `User.createFile` with all of the information needed of a file
 	* We use `User.createFile` and not `File.create` so that the file is associated with the user
-	* Check the `file` model to see what fields your file will need
+	* Check the `models/file.js` model to see what fields your file will need
 * When the file is created in the database, do an `fs.copy` to `assets/files/[filename].[extension]`
 * If all works out, you should see all of your user files at `/home`, and be able to click on files to download them
 

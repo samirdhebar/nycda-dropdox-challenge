@@ -10,11 +10,11 @@ const File = sql.define("file", {
 		type: Sequelize.INTEGER,
 		notNull: true,
 	},
-	name: {
+	originalName: {
 		type: Sequelize.STRING,
 		notNull: true,
 	},
-	mime: {
+	mimeType: {
 		type: Sequelize.STRING,
 		notNull: true,
 	},
