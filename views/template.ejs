@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<title><%= title %></title>
+		<link rel="stylesheet" type="text/css" href="/css/normalize.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/skeleton.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/style.css"/>
+	</head>
+	<body>
+		<div class="template">
+			<div class="template-header">
+				<a href="/" class="template-header-title">DropDox</a>
+				<% if (isLoggedIn) { %>
+					<a href="/auth/logout" class="template-header-logout">Logout</a>
+				<% } %>
+			</div>
+			<div class="template-body">
+				<% if (page) { %>
+					<%- include("./pages/" + page, pageArgs); %>
+				<% } else { %>
+					No page variable provided!
+				<% } %>
+			</div>
+		</div>
+	</body>
+</html>

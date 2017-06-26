@@ -1,0 +1,39 @@
+body {
+	padding: 40px;
+}
+
+input,
+button {
+	width: 100%;
+	max-width: 220px;
+	display: block;
+	margin: 0 auto 5px;
+}
+
+.template {
+	max-width: 720px;
+	margin: 0 auto;
+}
+
+.template-header a {
+	text-decoration: none;
+}
+
+.template-header-logout {
+	float: right;
+}
+
+.template-body {
+	min-height: 200px;
+	padding: 20px;
+	text-align: center;
+	background: #FCFCFC;
+	border: 1px solid #DDD;
+	border-radius: 4px;
+}
+
+.docs {
+	padding: 20px;
+	border: 1px solid #DDD;
+	border-radius: 4px;
+}

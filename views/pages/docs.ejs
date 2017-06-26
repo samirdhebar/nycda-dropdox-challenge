@@ -1,0 +1,11 @@
+<h1><%= username %>'s Documents</h1>
+<div class="docs">
+	<% if (docs && docs.length) { %>
+		<% for (let i = 0; i < docs.length; i++) { %>
+			<div class="docs-doc"><% JSON.stringify(docs[i]); %></div>
+		<% } %>
+	<% } else { %>
+		<p class="docs-none">You don't have any docs yet...<p>
+		<a href="/docs/upload" class="docs-upload">Why not upload some?</a>
+	<% } %>
+</div>
