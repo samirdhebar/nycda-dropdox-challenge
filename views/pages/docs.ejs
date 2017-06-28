@@ -9,7 +9,7 @@
 	<% if (docs && docs.length) { %>
 		<table>
 			<thead>
-				<td>Name (Download)</td>
+				<td>File (link)</td>
 				<td>Type</td>
 				<td>Size</td>
 			</thead>
@@ -17,7 +17,8 @@
 				<% for (let i = 0; i < docs.length; i++) { %>
 					<tr>
 						<td>
-							<a href="/docs/file/<%- docs[i].get('id') %>">
+							<a href="/docs/doc/<%- docs[i].get('id') %>">
+								<img src="<%- docs[i].getThumbnailSrc() %>"/>
 								<%- docs[i].get("originalName") %>
 							</a>
 						</td>

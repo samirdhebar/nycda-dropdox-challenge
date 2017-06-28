@@ -20,4 +20,16 @@ const File = sql.define("file", {
 	},
 });
 
+File.prototype.getThumbnailSrc = function() {
+	// Check if I have a thumbnail available in assets/thumbnails!
+	// Otherwise return this default icon
+	return "/icons/file.svg";
+};
+
+File.prototype.getPreviewSrc = function() {
+	// Check if I have a preview available in assets/previews!
+	// Otherwise return null, to display a "no preview" message
+	return null;
+};
+
 module.exports = File;

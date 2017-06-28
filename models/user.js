@@ -56,6 +56,10 @@ User.prototype.upload = function(file) {
 		const ext = path.extname(file.originalname);
 		const dest = "assets/files/" + file.filename + ext;
 		return fs.copy(file.path, dest);
+	})
+	.then(function() {
+		// If I'm an image, we should generate thumbnail
+		// and preview images as well.
 	});
 }
 

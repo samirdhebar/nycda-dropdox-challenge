@@ -36,6 +36,21 @@ button {
 	width: 100%;
 }
 
+.docs td {
+	line-height: 32px;
+}
+
+.docs td a {
+	text-decoration: none;
+}
+
+.docs td img {
+	width: 32px;
+	height: 32px;
+	margin-right: 6px;
+	vertical-align: top;
+}
+
 .docs-message {
 	background: green;
 	color: white;
@@ -51,4 +66,18 @@ button {
 	padding: 10px;
 	margin-bottom: 20px;
 	text-align: center;
+}
+
+
+.document-preview {
+	width: 480px;
+	padding: 20px;
+	margin: 0 auto 20px;
+	border-radius: 8px;
+	border: 1px solid #CCC;
+}
+.document-preview.noPreview {
+	font-size: 28px;
+	color: #CCC;
+	line-height: 200px;
 }

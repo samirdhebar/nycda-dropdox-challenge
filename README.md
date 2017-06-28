@@ -1,10 +1,13 @@
-# NYCDA Upload Challenge - DropDox
+# NYCDA Upload Challenge - DropDox Thumbnails
 
-This project is built off of the Auth Example project. You'll find it's been
-a little more organized in to separate routes.
+We've further extended to include thumbnails for documents, and a document page
+that allows you to preview the document. The plan is to have images that are
+uploaded also get a thumbnail and a compressed preview of the image, before you
+download it.
 
-Your goal here is to implement the uploading portion of this DropDox app.
-All of the changes you'll need are expressed below, but **you should only have to edit routes/dox.js and views/pages/upload.ejs for the main goals**. You're welcome to look around at any other files (This should be a good example project!) But you should not need to edit any other files, unless you try the challenge goals.
+Follow the goals below to complete this task. You should only need to alter
+**`views/pages/document.ejs`**, **`models/user.js`**, and **`models/file.js`**
+to get everything done.
 
 ## Your Goals
 
