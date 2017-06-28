@@ -14,8 +14,9 @@ All of the changes you'll need are expressed below, but **you should only have t
 * Handle the submit in a POST endpoint of /upload in `routes/dox.js`
 	* Also handle showing an error message if something goes wrong, or they POST without a file
 * Add a `multer` upload middleware that handles a single file (with a name of `file`)
-* In the route handler, call `User.createFile` with all of the information needed of a file
-	* We use `User.createFile` and not `File.create` so that the file is associated with the user
+* In the route handler, call `req.user.createFile` with all of the information needed of a file
+	* We use `req.user.createFile` and not `File.create` so that the file is associated with the user who's logged in
+	* We do NOT use `User.createFile` because that function doesn't exist, it needs to be an _instance_ of a user
 	* Check the `models/file.js` model to see what fields your file will need
 * When the file is created in the database, do an `fs.copy` to `assets/files/[filename].[extension]`
 * If all works out, you should see all of your user files at `/home`, and be able to click on files to download them
