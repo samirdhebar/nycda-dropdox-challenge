@@ -48,6 +48,7 @@ button {
 	width: 32px;
 	height: 32px;
 	margin-right: 6px;
+	border-radius: 2px;
 	vertical-align: top;
 }
 
@@ -68,16 +69,26 @@ button {
 	text-align: center;
 }
 
+.document {
+	width: 480px;
+	margin: 0 auto;
+}
 
 .document-preview {
-	width: 480px;
-	padding: 20px;
+	display: block;
+	max-width: 480px;
 	margin: 0 auto 20px;
-	border-radius: 8px;
-	border: 1px solid #CCC;
+	border-radius: 4px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 .document-preview.noPreview {
+	padding: 20px;
 	font-size: 28px;
 	color: #CCC;
 	line-height: 200px;
+	border: 1px solid #CCC;
+}
+
+.document-download {
+	display: block;
 }

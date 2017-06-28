@@ -2,4 +2,6 @@
 node_modules
 *.log
 assets/files/*
+assets/previews/*
+assets/thumbnails/*
 uploads/

@@ -5,30 +5,32 @@ that allows you to preview the document. The plan is to have images that are
 uploaded also get a thumbnail and a compressed preview of the image, before you
 download it.
 
-Follow the goals below to complete this task. You should only need to alter
-**`views/pages/document.ejs`**, **`models/user.js`**, and **`models/file.js`**
-to get everything done.
+Follow the goals below to complete this task. You should only need to alter **`models/user.js`**, and **`models/file.js`** to get everything done.
 
 ## Your Goals
 
-* Get everything running with a fresh database (See "Getting Started" below)
-* Create a proper file upload form in `views/pages/upload.ejs`
-* It should have a file input with a name of `file` and a submit button
-* Handle the submit in a POST endpoint of /upload in `routes/dox.js`
-	* Also handle showing an error message if something goes wrong, or they POST without a file
-* Add a `multer` upload middleware that handles a single file (with a name of `file`)
-* In the route handler, call `req.user.createFile` with all of the information needed of a file
-	* We use `req.user.createFile` and not `File.create` so that the file is associated with the user who's logged in
-	* We do NOT use `User.createFile` because that function doesn't exist, it needs to be an _instance_ of a user
-	* Check the `models/file.js` model to see what fields your file will need
-* When the file is created in the database, do an `fs.copy` to `assets/files/[filename].[extension]`
-* If all works out, you should see all of your user files at `/home`, and be able to click on files to download them
+File uploads have been consolidated under a `user.upload` instance method that's
+defined in `models/user.js`. It gets called in the POST `/upload` route in
+`routes/docs.js`.
+* Edit this function to generate a preview that is 80% quality, 400px tall, but
+maintains the aspect ratio of the image
+* Also generate a thumbnail that is 64px wide, and 64px tall, cropping the photo
+* These images should be saved to `assets/previews/[filename].jpg` and
+`assets/thumbnails/[filename].jpg` respectively
 
-Already done? Here are some challenge goals:
-
-* Style up your upload form to look cool
-* Extend the `User` model to add a function that does all of the file saving, given a `file` object
-* Modify your POST route and your file input to allow for multi-file upload
+File instances have been equipped with `getPreviewSrc()` and `getThumbnailSrc()`
+methods that get the correct path for an img src of the preview and thumbnail
+respectively. They're used in `views/pages/document.ejs` and
+`views/pages/docs.ejs` respectively.
+* Alter the `getPreviewSrc()` method to return a preview src path if one is
+available, and null if it's not
+* Alter the `getThumbnailSrc()` method to return a thumbnail src path if one is
+available, or a default path to `/icons/file.png` if it's not
+* You can use `fs`'s
+[`existsSync(path)`](https://nodejs.org/api/fs.html#fs_fs_existssync_path)
+method to check if the files exist or not
+  * We use `existsSync()` instead of `exists` because we want to be able to call
+  this function synchronously
 
 
 
