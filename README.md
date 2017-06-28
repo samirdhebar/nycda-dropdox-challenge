@@ -18,10 +18,9 @@ maintains the aspect ratio of the image
 * These images should be saved to `assets/previews/[filename].jpg` and
 `assets/thumbnails/[filename].jpg` respectively
 
-File instances have been equipped with `getPreviewSrc()` and `getThumbnailSrc()`
+File instances have been extended with `getPreviewSrc()` and `getThumbnailSrc()`
 methods that get the correct path for an img src of the preview and thumbnail
-respectively. They're used in `views/pages/document.ejs` and
-`views/pages/docs.ejs` respectively.
+respectively. These are defined in `models/file.js`. They're called in `views/pages/document.ejs` and `views/pages/docs.ejs` respectively.
 * Alter the `getPreviewSrc()` method to return a preview src path if one is
 available, and null if it's not
 * Alter the `getThumbnailSrc()` method to return a thumbnail src path if one is
@@ -29,7 +28,7 @@ available, or a default path to `/icons/file.png` if it's not
 * You can use `fs`'s
 [`existsSync(path)`](https://nodejs.org/api/fs.html#fs_fs_existssync_path)
 method to check if the files exist or not
-  * We use `existsSync()` instead of `exists` because we want to be able to call
+  * We use `existsSync()` instead of `exists()` because we want to be able to call
   this function synchronously
 
 
