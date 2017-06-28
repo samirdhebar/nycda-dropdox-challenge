@@ -35,3 +35,20 @@ button {
 .docs table {
 	width: 100%;
 }
+
+.docs-message {
+	background: green;
+	color: white;
+	padding: 10px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+
+.upload-error {
+	background: red;
+	color: white;
+	padding: 10px;
+	margin-bottom: 20px;
+	text-align: center;
+}

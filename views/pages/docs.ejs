@@ -1,5 +1,11 @@
 <h1><%= username %>'s Documents</h1>
 <div class="docs">
+	<% if (message) { %>
+		<p class="docs-message">
+			<%- message %>
+		</p>
+	<% } %>
+
 	<% if (docs && docs.length) { %>
 		<table>
 			<thead>

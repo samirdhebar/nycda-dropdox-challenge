@@ -1,5 +1,7 @@
 const Sequelize = require("sequelize");
 const bcrypt = require("bcrypt");
+const fs = require("fs-extra");
+const path = require("path");
 const sql = require("../util/sql");
 const File = require("./file");
 
@@ -42,5 +44,19 @@ User.hasMany(File);
 User.prototype.comparePassword = function(pw) {
 	return bcrypt.compare(pw, this.get("password"));
 };
+
+User.prototype.upload = function(file) {
+	return this.createFile({
+		id: file.filename,
+		size: file.size,
+		originalName: file.originalname,
+		mimeType: file.mimetype,
+	})
+	.then(function() {
+		const ext = path.extname(file.originalname);
+		const dest = "assets/files/" + file.filename + ext;
+		return fs.copy(file.path, dest);
+	});
+}
 
 module.exports = User;
