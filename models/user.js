@@ -2,6 +2,7 @@ const Sequelize = require("sequelize");
 const bcrypt = require("bcrypt");
 const fs = require("fs-extra");
 const path = require("path");
+const Jimp = require("jimp");
 const sql = require("../util/sql");
 const File = require("./file");
 
@@ -60,6 +61,17 @@ User.prototype.upload = function(file) {
 	.then(function() {
 		// If I'm an image, we should generate thumbnail
 		// and preview images as well.
+		if (file.mimetype.includes("image/")) {
+			Jimp.read(file.path).then(function(img) {
+				img.quality(80);
+				img.resize(Jimp.AUTO, 400);
+				return img.write("assets/previews/" + file.filename + ".jpg");
+			})
+			.then(function(img) {
+				img.cover(64, 64);
+				return img.write("assets/thumbnails/" + file.filename + ".jpg");
+			});
+		}
 	});
 }
 

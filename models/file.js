@@ -1,4 +1,5 @@
 const Sequelize = require("sequelize");
+const fs = require("fs");
 const sql = require("../util/sql");
 
 const File = sql.define("file", {
@@ -23,12 +24,23 @@ const File = sql.define("file", {
 File.prototype.getThumbnailSrc = function() {
 	// Check if I have a thumbnail available in assets/thumbnails!
 	// Otherwise return this default icon
-	return "/icons/file.svg";
+	const filePath = "/thumbnails/" + this.get("id") + ".jpg";
+	if (fs.existsSync("assets" + filePath)) {
+		return filePath;
+	}
+	else {
+		return "/icons/file.svg";
+	}
 };
 
 File.prototype.getPreviewSrc = function() {
 	// Check if I have a preview available in assets/previews!
 	// Otherwise return null, to display a "no preview" message
+	const filePath = "/previews/" + this.get("id") + ".jpg";
+	if (fs.existsSync("assets" + filePath)) {
+		return filePath;
+	}
+
 	return null;
 };
 
