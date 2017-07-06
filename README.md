@@ -1,37 +1,41 @@
-# NYCDA Upload Challenge - DropDox Thumbnails
+# NYCDA Upload Challenge - DropDox API
 
-We've further extended to include thumbnails for documents, and a document page
-that allows you to preview the document. The plan is to have images that are
-uploaded also get a thumbnail and a compressed preview of the image, before you
-download it.
+To improve our signup and login experience, we'll provide instant feedback for
+users when they try to do either action. Upon submitting the form, we'll
+immediately give them a message if something goes wrong, or redirect them if
+it's all good.
 
-Follow the goals below to complete this task. You should only need to alter **`models/user.js`**, and **`models/file.js`** to get everything done.
+In order to accomplish this goal, **you should only have to edit
+`routes/api.js`, `models/user.js`, `assets/js/login.js`, and
+`assets/js/signup.js`**.
 
 ## Your Goals
 
-File uploads have been consolidated under a `user.upload` instance method that's
-defined in `models/user.js`. It gets called in the POST `/upload` route in
-`routes/docs.js`.
-* Edit this function to generate a preview that is 80% quality, 400px tall, but
-maintains the aspect ratio of the image
-* Also generate a thumbnail that is 64px wide, and 64px tall, cropping the photo
-* These images should be saved to `assets/previews/[filename].jpg` and
-`assets/thumbnails/[filename].jpg` respectively
+First we'll want to implement our API endpoints:
+* Move as much of the functionality from POST `/login` and POST `/signup` in
+`routes/auth.js` into helper methods on the `User` model as possible
+(`models/user.js`)
+* Have those routes use those functions and return HTML
+* Have the same routes in `routes/api.js` use the same functions, but return
+JSON instead
 
-File instances have been extended with `getPreviewSrc()` and `getThumbnailSrc()`
-methods that get the correct path for an img src of the preview and thumbnail
-respectively. These are defined in `models/file.js`. They're called in `views/pages/document.ejs` and `views/pages/docs.ejs` respectively.
-* Alter the `getPreviewSrc()` method to return a preview src path if one is
-available, and null if it's not
-* Alter the `getThumbnailSrc()` method to return a thumbnail src path if one is
-available, or a default path to `/icons/file.png` if it's not
-* You can use `fs`'s
-[`existsSync(path)`](https://nodejs.org/api/fs.html#fs_fs_existssync_path)
-method to check if the files exist or not
-  * We use `existsSync()` instead of `exists()` because we want to be able to call
-  this function synchronously
+Next, we'll want to submit our forms via AJAX:
+* In `assets/js/login.js`, you'll want to listen for the form submit
+* If they don't provide a username or password, you should immediately `alert`
+the user to an error, saying they need those arguments
+* Submit an `$.ajax` POST request to `/api/login` with the username and password
+* If all goes well, redirect them to `/home`
+* If there's an error, alert the user to it
+* Do all of the same in `assets/js/signup.js`, for the `/api/signup` endpoint
 
-
+Finally, we're going to add some new functionality, the ability to delete documents:
+* In `routes/api.js`, you'll want to implement the endpoint at `/doc/:fileId`
+that finds a file by ID, and calls `destroy()` on the instance
+* In `assets/js/docs.js`, you'll want to listen for delete button presses
+* Using the `data-fileId` attribute on each button, you'll want to submit a
+DELETE request to `api/doc/:fileId`
+* If everything goes well, you should remove the row from the docs page
+* If something goes wrong, you should alert the user
 
 ## Getting started
 

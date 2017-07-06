@@ -15,6 +15,7 @@ const SessionStore = connectSessionSequelize(session.Store);
 
 const docsRoutes = require("./routes/docs");
 const authRoutes = require("./routes/auth");
+const apiRoutes = require("./routes/api");
 
 
 
@@ -24,6 +25,7 @@ const authRoutes = require("./routes/auth");
 app.set("view engine", "ejs");
 app.use(express.static("assets"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cookieParser(cookieSecret));
 app.use(session({
 	secret: cookieSecret,
@@ -46,6 +48,7 @@ app.get("/", function(req, res) {
 
 app.use("/auth", authRoutes);
 app.use("/docs", docsRoutes);
+app.use("/api", apiRoutes);
 
 app.all("*", function(req, res) {
 	res.status(404);
