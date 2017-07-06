@@ -6,8 +6,8 @@ immediately give them a message if something goes wrong, or redirect them if
 it's all good.
 
 In order to accomplish this goal, **you should only have to edit
-`routes/api.js`, `models/user.js`, `assets/js/login.js`, and
-`assets/js/signup.js`**.
+`routes/api.js`, `models/user.js`, `assets/js/login.js`, `assets/js/docs.js`,
+and `assets/js/signup.js`**.
 
 ## Your Goals
 
@@ -28,14 +28,16 @@ the user to an error, saying they need those arguments
 * If there's an error, alert the user to it
 * Do all of the same in `assets/js/signup.js`, for the `/api/signup` endpoint
 
-Finally, we're going to add some new functionality, the ability to delete documents:
+Finally, we're going to add some new, API-only functionality, the ability to delete documents:
 * In `routes/api.js`, you'll want to implement the endpoint at `/doc/:fileId`
-that finds a file by ID, and calls `destroy()` on the instance
+that finds a file by ID, and calls `destroy()` on the instance. If the database
+gives an error, or no file exists, be sure to return an error response.
 * In `assets/js/docs.js`, you'll want to listen for delete button presses
 * Using the `data-fileId` attribute on each button, you'll want to submit a
 DELETE request to `api/doc/:fileId`
-* If everything goes well, you should remove the row from the docs page
-* If something goes wrong, you should alert the user
+* If everything goes well, you should remove the table row from the docs page
+using jQuery
+* If something goes wrong, you should alert the user and do nothing
 
 ## Getting started
 
