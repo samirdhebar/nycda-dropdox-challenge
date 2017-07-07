@@ -16,7 +16,7 @@
 			</thead>
 			<tbody>
 				<% for (let i = 0; i < docs.length; i++) { %>
-					<tr class="doc" data-fileId="<%- docs[i].get('id') %>">
+					<tr class="doc" data-fileid="<%- docs[i].get('id') %>">
 						<td>
 							<a href="/docs/doc/<%- docs[i].get('id') %>">
 								<img src="<%- docs[i].getThumbnailSrc() %>"/>
@@ -30,7 +30,7 @@
 							<%- docs[i].get("size") %> bytes
 						</td>
 						<td>
-							<button class="doc-delete" data-fileId="<%- docs[i].get('id') %>">
+							<button class="doc-delete" data-fileid="<%- docs[i].get('id') %>">
 								X
 							</button>
 						</td>
