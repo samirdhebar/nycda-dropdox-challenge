@@ -12,10 +12,11 @@
 				<td>File (link)</td>
 				<td>Type</td>
 				<td>Size</td>
+				<td>Delete</td>
 			</thead>
 			<tbody>
 				<% for (let i = 0; i < docs.length; i++) { %>
-					<tr>
+					<tr class="doc" data-fileid="<%- docs[i].get('id') %>">
 						<td>
 							<a href="/docs/doc/<%- docs[i].get('id') %>">
 								<img src="<%- docs[i].getThumbnailSrc() %>"/>
@@ -28,6 +29,11 @@
 						<td>
 							<%- docs[i].get("size") %> bytes
 						</td>
+						<td>
+							<button class="doc-delete" data-fileid="<%- docs[i].get('id') %>">
+								X
+							</button>
+						</td>
 					</tr>
 				<% } %>
 			</tbody>
@@ -38,3 +44,5 @@
 		<a href="/docs/upload" class="docs-upload">Why not upload some?</a>
 	<% } %>
 </div>
+
+<script src="/js/docs.js"></script>

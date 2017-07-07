@@ -34,10 +34,21 @@ button {
 
 .docs table {
 	width: 100%;
+	table-layout: fixed;
 }
 
 .docs td {
+	width: 20%;
 	line-height: 32px;
+	overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.docs td:first-child {
+	width: 50%;
+}
+.docs td:last-child {
+	width: 10%;
 }
 
 .docs td a {
@@ -57,6 +68,13 @@ button {
 	color: white;
 	padding: 10px;
 	margin-bottom: 20px;
+	text-align: center;
+}
+
+.doc-delete {
+	width: 100%;
+	min-width: 0;
+	padding: 0;
 	text-align: center;
 }
 
