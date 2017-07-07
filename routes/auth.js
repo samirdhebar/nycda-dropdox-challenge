@@ -11,15 +11,11 @@ router.get("/signup", function(req, res) {
 });
 
 router.post("/signup", function(req, res) {
-	User.create({
-		username: req.body.username,
-		password: req.body.password,
-	})
-	.then(function(user) {
-		req.session.userid = user.id;
+	User.signup(req).then(function() {
 		res.redirect("/docs");
 	})
 	.catch(function(err) {
+		res.status(400);
 		renderTemplate(req, res, "Signup", "signup", {
 			error: "Invalid username or password",
 		});
@@ -32,35 +28,13 @@ router.get("/login", function(req, res) {
 });
 
 router.post("/login", function(req, res) {
-	User.findOne({
-		where: {
-			username: req.body.username,
-		},
-	})
-	.then(function(user) {
-		if (user) {
-			user.comparePassword(req.body.password).then(function(valid) {
-				if (valid) {
-					req.session.userid = user.get("id");
-					res.redirect("/docs");
-				}
-				else {
-					renderTemplate(req, res, "Login", "login", {
-						error: "Incorrect password",
-					});
-				}
-			});
-		}
-		else {
-			renderTemplate(req, res, "Login", "login", {
-				error: "Username not found",
-			});
-		}
+	User.login(req).then(function() {
+		res.redirect("/docs");
 	})
 	.catch(function(err) {
-		console.log(err);
+		res.status(400);
 		renderTemplate(req, res, "Login", "login", {
-			error: "The database exploded, please try again",
+			error: err.message,
 		});
 	});
 });

@@ -5,11 +5,13 @@ const File = require("../models/file");
 const router = express.Router();
 
 router.post("/signup", function(req, res) {
-	// ******************** //
-	// *** EDIT IN HERE *** //
-	// ******************** //
-	res.status(500);
-	res.json({ implemented: false });
+	User.signup(req).then(function(user) {
+		res.json({ user: user });
+	})
+	.catch(function(err) {
+		res.status(400);
+		res.json({ error: "Invalid username or password" });
+	});
 });
 
 
